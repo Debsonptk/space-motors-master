@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       <BackGroundColorHome>
         <HeaderComponent />
         <Container>
-          <h1 className="text-white">Home</h1>
+          <h1 className="text-white text-center pt-3 pb-5">Home</h1>
           <Link to="/checkout">Checkout</Link>
         </Container>
       </BackGroundColorHome>
