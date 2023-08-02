@@ -46,6 +46,7 @@ const Checkout: React.FC = () => {
                 placeholder="Name"
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register('name')}
+                required
               />
             </div>
             <div>
