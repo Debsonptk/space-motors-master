@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { memo, useCallback, useEffect } from 'react'
 
-import { Card, Container } from 'react-bootstrap'
+import { Card, Col, Container, Row } from 'react-bootstrap'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useForm } from 'react-hook-form'
 import { MdOutlineArrowBackIosNew } from 'react-icons/md'
@@ -14,7 +14,11 @@ import useTitle from 'hooks/useTitle'
 
 import { FormType } from 'types/FormType'
 
-import { BackGroundColorCheckout } from './styles'
+import {
+  BackGroundColorCheckout,
+  BackGroundColorImput,
+  TextYelowColor,
+} from './styles'
 
 const Checkout: React.FC = () => {
   const {
@@ -44,80 +48,80 @@ const Checkout: React.FC = () => {
             </Link>
             <h1 className="text-white px-2">Checkout</h1>
           </div>
-          <Card className="bg-black p-3">
-            <h3 className="text-warning">Informações Pessoais</h3>
-            <form onSubmit={handleSubmit(handleFormSubmit)}>
-              <div>
-                <div>
-                  <label className="text-white" htmlFor="name">
-                    Name
-                  </label>
-                </div>
-                <input
-                  className="form-control bg-secondary border-0"
-                  id="name"
-                  type="text"
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('name', {
-                    required: 'INFORME O SEU NOME',
-                    minLength: {
-                      value: 5,
-                      message: 'Preencha com  pelo menos 5 caracteres',
-                    },
-                  })}
-                  required
-                />
-                {errors.name && (
-                  <p className="text-danger">{errors.name.message}</p>
-                )}
-              </div>
-              <div>
-                <div>
-                  <label className="text-white" htmlFor="email">
-                    E-mail
-                  </label>
-                </div>
-                <input
-                  className="form-control bg-secondary border-0"
-                  id="email"
-                  type="text"
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('email')}
-                />
-              </div>
-              <div>
-                <div>
-                  <label className="text-white" htmlFor="phone">
-                    Phone
-                  </label>
-                </div>
-                <input
-                  className="form-control bg-secondary border-0"
-                  id="pfone"
-                  type="number"
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('phone')}
-                />
-              </div>
-              <div>
-                <div>
-                  <label className="text-white" htmlFor="cpf">
-                    CPF
-                  </label>
-                </div>
-                <input
-                  className="form-control bg-secondary border-0"
-                  id="cpf"
-                  type="number"
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('cpf')}
-                />
-              </div>
-              <div>
-                <button type="submit">Enviar</button>
-              </div>
-            </form>
-          </Card>
+          <Row className="row-cols-1 row-cols-lg-3">
+            <Col>
+              <Card className="bg-black p-3">
+                <TextYelowColor>Informações Pessoais</TextYelowColor>
+                <form onSubmit={handleSubmit(handleFormSubmit)}>
+                  <div>
+                    <div>
+                      <label className="text-white" htmlFor="name">
+                        Name
+                      </label>
+                    </div>
+                    <BackGroundColorImput
+                      className="form-control border-0"
+                      id="name"
+                      type="text"
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...register('name', {
+                        required: 'INFORME O SEU NOME',
+                        maxLength: {
+                          value: 35,
+                          message: 'Coloque apenas o primeiro e último nome',
+                        },
+                      })}
+                    />
+                    {errors.name && (
+                      <p className="text-danger">{errors.name.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <div>
+                      <label className="text-white" htmlFor="email">
+                        E-mail
+                      </label>
+                    </div>
+                    <BackGroundColorImput
+                      className="form-control border-0"
+                      id="email"
+                      type="text"
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...register('email')}
+                    />
+                  </div>
+                  <div>
+                    <div>
+                      <label className="text-white" htmlFor="phone">
+                        Phone
+                      </label>
+                    </div>
+                    <BackGroundColorImput
+                      className="form-control border-0"
+                      id="pfone"
+                      type="number"
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...register('phone')}
+                    />
+                  </div>
+                  <div>
+                    <div>
+                      <label className="text-white" htmlFor="cpf">
+                        CPF
+                      </label>
+                    </div>
+                    <BackGroundColorImput
+                      className="form-control border-0"
+                      id="cpf"
+                      type="number"
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...register('cpf')}
+                    />
+                  </div>
+                </form>
+              </Card>
+            </Col>
+          </Row>
         </Container>
       </BackGroundColorCheckout>
       <FooterComponent />
