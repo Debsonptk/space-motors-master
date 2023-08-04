@@ -17,7 +17,8 @@ import { FormType } from 'types/FormType'
 import {
   BackGroundColorCheckout,
   BackGroundColorImput,
-  TextYelowColor,
+  ButtonYellowColor,
+  TextYellowColor,
 } from './styles'
 
 const Checkout: React.FC = () => {
@@ -52,7 +53,7 @@ const Checkout: React.FC = () => {
           <Row className="row-cols-1 row-cols-lg-3 g-2">
             <Col className="pb-4">
               <Card className="bg-black p-3">
-                <TextYelowColor>Informações Pessoais</TextYelowColor>
+                <TextYellowColor>Informações Pessoais</TextYellowColor>
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
                   <div>
                     <label className="text-white pb-2 pt-2" htmlFor="name">
@@ -137,7 +138,7 @@ const Checkout: React.FC = () => {
             </Col>
             <Col className="pb-4">
               <Card className="bg-black p-3">
-                <TextYelowColor>Endereço</TextYelowColor>
+                <TextYellowColor>Endereço</TextYellowColor>
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
                   <div>
                     <label className="text-white pb-2 pt-2" htmlFor="cep">
@@ -278,7 +279,7 @@ const Checkout: React.FC = () => {
             </Col>
             <Col>
               <Card className="bg-black p-3">
-                <TextYelowColor>Forma de pagamento</TextYelowColor>
+                <TextYellowColor>Forma de pagamento</TextYellowColor>
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
                   <div>
                     <label
@@ -365,6 +366,11 @@ const Checkout: React.FC = () => {
                   </Row>
                 </form>
               </Card>
+              <div className="d-grid gap-2 pt-3">
+                <ButtonYellowColor className="btn p-2" type="button">
+                  Finalizar Compra
+                </ButtonYellowColor>
+              </div>
             </Col>
           </Row>
         </Container>
