@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const BackGroundColorCheckout = styled.div`
   background-color: #282a36;
+  flex-grow: 1;
 `
 export const BackGroundColorImput = styled.input`
   background-color: #333333;

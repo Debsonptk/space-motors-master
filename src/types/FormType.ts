@@ -4,10 +4,14 @@ export type FormType = {
   phone: string
   cpf: string
   cep: string
-  logradouro: string
-  numero: string
-  complemento: string
-  bairro: string
-  cidade: string
-  estado: string
+  publicPlace: string
+  number: string
+  complement: string
+  neighborhood: string
+  city: string
+  state: string
+  nameCreditCard: string
+  numberCreditCard: string
+  validity: string
+  securityCode: string
 }

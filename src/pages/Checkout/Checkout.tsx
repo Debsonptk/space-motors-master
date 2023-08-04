@@ -49,34 +49,32 @@ const Checkout: React.FC = () => {
             </Link>
             <h1 className="text-white px-2">Checkout</h1>
           </div>
-          <Row className="row-cols-1 row-cols-lg-3">
-            <Col>
+          <Row className="row-cols-1 row-cols-lg-3 g-2">
+            <Col className="pb-4">
               <Card className="bg-black p-3">
                 <TextYelowColor>Informações Pessoais</TextYelowColor>
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
                   <div>
-                    <div>
-                      <label className="text-white pb-2 pt-2" htmlFor="name">
-                        Nome
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="name"
-                      type="text"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...register('name', {
-                        required: 'O campo nome está vazio',
-                        maxLength: {
-                          value: 35,
-                          message: 'Coloque apenas o primeiro e último nome',
-                        },
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
+                    <label className="text-white pb-2 pt-2" htmlFor="name">
+                      Nome
+                    </label>
                   </div>
+                  <BackGroundColorImput
+                    className="form-control border-0"
+                    id="name"
+                    type="text"
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...register('name', {
+                      required: 'O campo nome está vazio',
+                      maxLength: {
+                        value: 35,
+                        message: 'Coloque apenas o primeiro e último nome',
+                      },
+                    })}
+                  />
+                  {errors.name && (
+                    <p className="text-danger">{errors.name.message}</p>
+                  )}
                   <div>
                     <div>
                       <label className="text-white pb-2 pt-2" htmlFor="email">
@@ -137,32 +135,33 @@ const Checkout: React.FC = () => {
                 </form>
               </Card>
             </Col>
-            <Col>
+            <Col className="pb-4">
               <Card className="bg-black p-3">
                 <TextYelowColor>Endereço</TextYelowColor>
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
                   <div>
-                    <div>
-                      <label className="text-white pb-2" htmlFor="cep">
-                        CEP
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="cep"
-                      type="number"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...register('cep', {
-                        required: 'O campo CEP está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
+                    <label className="text-white pb-2 pt-2" htmlFor="cep">
+                      CEP
+                    </label>
                   </div>
+                  <BackGroundColorImput
+                    className="form-control border-0"
+                    id="cep"
+                    type="number"
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...register('cep', {
+                      required: 'O campo CEP está vazio',
+                    })}
+                  />
+                  {errors.name && (
+                    <p className="text-danger">{errors.name.message}</p>
+                  )}
                   <div>
                     <div>
-                      <label className="text-white pb-2" htmlFor="logradouro">
+                      <label
+                        className="text-white pb-2 pt-2"
+                        htmlFor="logradouro"
+                      >
                         Logradouro
                       </label>
                     </div>
@@ -171,7 +170,7 @@ const Checkout: React.FC = () => {
                       id="logradouro"
                       type="text"
                       // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...register('logradouro', {
+                      {...register('publicPlace', {
                         required: 'O campo Logradouro está vazio',
                       })}
                     />
@@ -182,7 +181,7 @@ const Checkout: React.FC = () => {
                   <Row className="d-flex row-cols-1 row-cols-md-2 g-2">
                     <Col>
                       <div>
-                        <label className="text-white pb-2" htmlFor="num">
+                        <label className="text-white pb-2 pt-2" htmlFor="num">
                           Número
                         </label>
                       </div>
@@ -191,7 +190,7 @@ const Checkout: React.FC = () => {
                         id="num"
                         type="number"
                         // eslint-disable-next-line react/jsx-props-no-spreading
-                        {...register('numero', {
+                        {...register('number', {
                           required: 'O campo Número está vazio',
                         })}
                       />
@@ -202,7 +201,7 @@ const Checkout: React.FC = () => {
                     <Col>
                       <div>
                         <label
-                          className="text-white pb-2"
+                          className="text-white pb-2 pt-2"
                           htmlFor="complemento"
                         >
                           Complemento*
@@ -213,13 +212,13 @@ const Checkout: React.FC = () => {
                         id="complemento"
                         type="text"
                         // eslint-disable-next-line react/jsx-props-no-spreading
-                        {...register('complemento')}
+                        {...register('complement')}
                       />
                     </Col>
                   </Row>
                   <div>
                     <div>
-                      <label className="text-white pb-2" htmlFor="bairro">
+                      <label className="text-white pb-2 pt-2" htmlFor="bairro">
                         Bairro
                       </label>
                     </div>
@@ -228,7 +227,7 @@ const Checkout: React.FC = () => {
                       id="bairro"
                       type="text"
                       // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...register('bairro', {
+                      {...register('neighborhood', {
                         required: 'O campo Bairro está vazio',
                       })}
                     />
@@ -238,7 +237,7 @@ const Checkout: React.FC = () => {
                   </div>
                   <div>
                     <div>
-                      <label className="text-white pb-2" htmlFor="cidade">
+                      <label className="text-white pb-2 pt-2" htmlFor="cidade">
                         Cidade
                       </label>
                     </div>
@@ -247,7 +246,7 @@ const Checkout: React.FC = () => {
                       id="cidade"
                       type="text"
                       // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...register('cidade', {
+                      {...register('city', {
                         required: 'O campo Cidade está vazio',
                       })}
                     />
@@ -257,7 +256,7 @@ const Checkout: React.FC = () => {
                   </div>
                   <div>
                     <div>
-                      <label className="text-white pb-2" htmlFor="estado">
+                      <label className="text-white pb-2 pt-2" htmlFor="estado">
                         Estado
                       </label>
                     </div>
@@ -266,7 +265,7 @@ const Checkout: React.FC = () => {
                       id="estado"
                       type="text"
                       // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...register('estado', {
+                      {...register('state', {
                         required: 'O campo Estado está vazio',
                       })}
                     />
@@ -274,6 +273,96 @@ const Checkout: React.FC = () => {
                       <p className="text-danger">{errors.name.message}</p>
                     )}
                   </div>
+                </form>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="bg-black p-3">
+                <TextYelowColor>Forma de pagamento</TextYelowColor>
+                <form onSubmit={handleSubmit(handleFormSubmit)}>
+                  <div>
+                    <label
+                      className="text-white pb-2 pt-2 pt-2"
+                      htmlFor="nameCreditCard"
+                    >
+                      Nome do titular do cartão
+                    </label>
+                  </div>
+                  <BackGroundColorImput
+                    className="form-control border-0"
+                    id="nameCreditCard"
+                    type="text"
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...register('nameCreditCard', {
+                      required: 'O campo nome do titular do cartão está vazio',
+                    })}
+                  />
+                  {errors.name && (
+                    <p className="text-danger">{errors.name.message}</p>
+                  )}
+                  <div>
+                    <div>
+                      <label
+                        className="text-white pb-2 pt-2"
+                        htmlFor="numberCard"
+                      >
+                        Número do cartão
+                      </label>
+                    </div>
+                    <BackGroundColorImput
+                      className="form-control border-0"
+                      id="email"
+                      type="numberCard"
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...register('numberCreditCard', {
+                        required: 'O campo Número do cartão está vazio',
+                      })}
+                    />
+                    {errors.name && (
+                      <p className="text-danger">{errors.name.message}</p>
+                    )}
+                  </div>
+                  <Row className="d-flex row-cols-1 row-cols-md-2 g-2">
+                    <Col>
+                      <div>
+                        <label
+                          className="text-white pb-2 pt-2"
+                          htmlFor="validity"
+                        >
+                          Validade
+                        </label>
+                      </div>
+                      <BackGroundColorImput
+                        className="form-control border-0"
+                        id="validity"
+                        type="number"
+                        // eslint-disable-next-line react/jsx-props-no-spreading
+                        {...register('validity', {
+                          required: 'O campo Validade está vazio',
+                        })}
+                      />
+                      {errors.name && (
+                        <p className="text-danger">{errors.name.message}</p>
+                      )}
+                    </Col>
+                    <Col>
+                      <div>
+                        <label
+                          className="text-white pb-2 pt-2"
+                          htmlFor="securityCode"
+                        >
+                          Código de Segurança
+                        </label>
+                      </div>
+                      <BackGroundColorImput
+                        className="form-control border-0"
+                        id="securityCode"
+                        type="text"
+                        // eslint-disable-next-line react/jsx-props-no-spreading
+                        {...register('complement')}
+                      />
+                    </Col>
+                  </Row>
                 </form>
               </Card>
             </Col>
