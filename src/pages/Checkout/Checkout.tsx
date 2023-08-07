@@ -24,7 +24,9 @@ import {
 } from './styles'
 
 const Checkout: React.FC = () => {
+  const setTitle = useTitle()
   const [lastCep, setLastCep] = useState('')
+  const [isInvalidCep, setIsInvalidCep] = useState(false)
 
   const {
     register,
@@ -33,7 +35,6 @@ const Checkout: React.FC = () => {
     setValue,
     formState: { errors },
   } = useForm<FormType>()
-  const setTitle = useTitle()
 
   useEffect(() => {
     setTitle('checkout')
@@ -49,7 +50,11 @@ const Checkout: React.FC = () => {
 
   const fetchAdress = useCallback(
     async (cep: string) => {
+      setIsInvalidCep(false)
       const { data } = await ApiCep.get(`/${cep}/json/`)
+      if (data.erro) {
+        setIsInvalidCep(true)
+      }
 
       setValue('publicPlace', data.logradouro)
       setValue('neighborhood', data.bairro)
@@ -177,6 +182,9 @@ const Checkout: React.FC = () => {
                       required: 'O campo CEP está vazio',
                     })}
                   />
+                  {isInvalidCep && (
+                    <span className="text-danger">CEP INVÁLIDO</span>
+                  )}
                   {errors.name && (
                     <p className="text-danger">{errors.name.message}</p>
                   )}
