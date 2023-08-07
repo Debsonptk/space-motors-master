@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { memo, useCallback, useEffect } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 
 import { Card, Col, Container, Row } from 'react-bootstrap'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -12,6 +12,8 @@ import HeaderComponent from 'components/Header/HeaderComponent'
 
 import useTitle from 'hooks/useTitle'
 
+import ApiCep from 'services/apiCep'
+
 import { FormType } from 'types/FormType'
 
 import {
@@ -22,9 +24,13 @@ import {
 } from './styles'
 
 const Checkout: React.FC = () => {
+  const [lastCep, setLastCep] = useState('')
+
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<FormType>()
   const setTitle = useTitle()
@@ -38,6 +44,28 @@ const Checkout: React.FC = () => {
     // eslint-disable-next-line no-console
     console.log('SUBMITED', data)
   }, [])
+
+  const cepValue = watch('cep')
+
+  const fetchAdress = useCallback(
+    async (cep: string) => {
+      const { data } = await ApiCep.get(`/${cep}/json/`)
+
+      setValue('publicPlace', data.logradouro)
+      setValue('neighborhood', data.bairro)
+      setValue('city', data.localidade)
+      setValue('state', data.uf)
+    },
+    [setValue],
+  )
+
+  useEffect(() => {
+    if (cepValue?.length === 8 && cepValue !== lastCep) {
+      setLastCep(cepValue)
+      fetchAdress(cepValue)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cepValue])
 
   return (
     <>
