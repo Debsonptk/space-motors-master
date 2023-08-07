@@ -12,6 +12,9 @@ const Config = {
   api: {
     baseUrl: import.meta.env.VITE_API_URL ?? '',
   },
+  cepApi: {
+    baseUrl: import.meta.env.VITE_VIA_CEP_URL ?? '',
+  },
 }
 
 export default Config

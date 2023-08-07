@@ -64,7 +64,6 @@ const Checkout: React.FC = () => {
                     className="form-control border-0"
                     id="name"
                     type="text"
-                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('name', {
                       required: 'O campo nome está vazio',
                       maxLength: {
@@ -86,7 +85,6 @@ const Checkout: React.FC = () => {
                       className="form-control border-0"
                       id="email"
                       type="text"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('email', {
                         required: 'O campo E-mail está vazio',
                       })}
@@ -98,14 +96,13 @@ const Checkout: React.FC = () => {
                   <div>
                     <div>
                       <label className="text-white pb-2 pt-2" htmlFor="phone">
-                        telefone
+                        Telefone
                       </label>
                     </div>
                     <BackGroundColorImput
                       className="form-control border-0"
                       id="phone"
                       type="number"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('phone', {
                         required: 'O campo telefone está vazio',
                       })}
@@ -124,7 +121,6 @@ const Checkout: React.FC = () => {
                       className="form-control border-0"
                       id="cpf"
                       type="number"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('cpf', {
                         required: 'O campo CPF está vazio',
                       })}
@@ -149,7 +145,6 @@ const Checkout: React.FC = () => {
                     className="form-control border-0"
                     id="cep"
                     type="number"
-                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('cep', {
                       required: 'O campo CEP está vazio',
                     })}
@@ -170,7 +165,6 @@ const Checkout: React.FC = () => {
                       className="form-control border-0"
                       id="logradouro"
                       type="text"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('publicPlace', {
                         required: 'O campo Logradouro está vazio',
                       })}
@@ -190,7 +184,6 @@ const Checkout: React.FC = () => {
                         className="form-control border-0"
                         id="num"
                         type="number"
-                        // eslint-disable-next-line react/jsx-props-no-spreading
                         {...register('number', {
                           required: 'O campo Número está vazio',
                         })}
@@ -212,7 +205,6 @@ const Checkout: React.FC = () => {
                         className="form-control border-0"
                         id="complemento"
                         type="text"
-                        // eslint-disable-next-line react/jsx-props-no-spreading
                         {...register('complement')}
                       />
                     </Col>
@@ -227,7 +219,6 @@ const Checkout: React.FC = () => {
                       className="form-control border-0"
                       id="bairro"
                       type="text"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('neighborhood', {
                         required: 'O campo Bairro está vazio',
                       })}
@@ -246,7 +237,6 @@ const Checkout: React.FC = () => {
                       className="form-control border-0"
                       id="cidade"
                       type="text"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('city', {
                         required: 'O campo Cidade está vazio',
                       })}
@@ -265,7 +255,6 @@ const Checkout: React.FC = () => {
                       className="form-control border-0"
                       id="estado"
                       type="text"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('state', {
                         required: 'O campo Estado está vazio',
                       })}
@@ -293,7 +282,6 @@ const Checkout: React.FC = () => {
                     className="form-control border-0"
                     id="nameCreditCard"
                     type="text"
-                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register('nameCreditCard', {
                       required: 'O campo nome do titular do cartão está vazio',
                     })}
@@ -314,7 +302,6 @@ const Checkout: React.FC = () => {
                       className="form-control border-0"
                       id="email"
                       type="numberCard"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...register('numberCreditCard', {
                         required: 'O campo Número do cartão está vazio',
                       })}
@@ -337,7 +324,6 @@ const Checkout: React.FC = () => {
                         className="form-control border-0"
                         id="validity"
                         type="number"
-                        // eslint-disable-next-line react/jsx-props-no-spreading
                         {...register('validity', {
                           required: 'O campo Validade está vazio',
                         })}
@@ -359,7 +345,6 @@ const Checkout: React.FC = () => {
                         className="form-control border-0"
                         id="securityCode"
                         type="text"
-                        // eslint-disable-next-line react/jsx-props-no-spreading
                         {...register('complement')}
                       />
                     </Col>
@@ -367,7 +352,7 @@ const Checkout: React.FC = () => {
                 </form>
               </Card>
               <div className="d-grid gap-2 pt-3">
-                <ButtonYellowColor className="btn p-2" type="button">
+                <ButtonYellowColor className="btn p-2" type="submit">
                   Finalizar Compra
                 </ButtonYellowColor>
               </div>
