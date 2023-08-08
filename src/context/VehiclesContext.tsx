@@ -1,7 +1,12 @@
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
+
+import { VehicleType } from 'types/VehiclesType'
 
 interface IContextProps {
-  something: string
+  vehicles: VehicleType[]
+  vehicle: VehicleType | null
+  isLoading: boolean
+  currentPage: number
 }
 
 interface IMyCustomProviderProps {
@@ -13,13 +18,21 @@ export const ReactContext = createContext<IContextProps>({} as IContextProps)
 export const VehiclesProvider: React.FC<IMyCustomProviderProps> = ({
   children,
 }) => {
+  const [vehicles, setVehicles] = useState<VehicleType[]>([])
+  const [vehicle, setVehicle] = useState<VehicleType | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+
   return (
     <ReactContext.Provider
       value={useMemo(
         () => ({
-          something: '',
+          vehicles,
+          vehicle,
+          isLoading,
+          currentPage,
         }),
-        [],
+        [vehicles, vehicle, isLoading, currentPage],
       )}
     >
       {children}
@@ -32,7 +45,7 @@ export const useVehicles = (): IContextProps => {
 
   if (!context) {
     // eslint-disable-next-line no-console
-    console.error('useuseVehicles must be within MyCustomProvider')
+    console.error('useVehiclesHook must be within MyCustomProvider')
   }
 
   return context
