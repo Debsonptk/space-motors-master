@@ -15,43 +15,40 @@ const VehicleCard: React.FC<IVehicleCardProps> = ({ vehicle }) => {
   )
 
   return (
-    <CardContainer className="w-100 d-flex flex-column position-relative">
-      <p className="text-muted">{vehicle.manufacturer}</p>
+    <CardContainer className="w-100 d-flex flex-column ">
+      <span className="text-secondary">{vehicle.manufacturer}</span>
       {hasProduct ? (
-        <LinkTitle
-          to={`/${vehicle.url}/${vehicle.name}`}
-          className="text-decoration-none h2 mb-0 stretched-link"
-        >
+        <LinkTitle to="/checkout" className="text-decoration-none h2 mb-0">
           {vehicle.name}
         </LinkTitle>
       ) : (
         <h2>{vehicle.name}</h2>
       )}
-      <p className="text-muted">{vehicle.model}</p>
+      <p className="text-secondary">{vehicle.model}</p>
       <div className="text-light mt-3 row-cols-1 flex-grow-1">
         <div className="d-flex justify-content-between">
-          <p>Largura:</p>
-          <p>{vehicle.length}</p>
+          <span>Largura:</span>
+          <span>{vehicle.length}</span>
         </div>
         <div className="d-flex justify-content-between">
-          <p>Velocidade:</p>
-          <p>{vehicle.max_atmosphering_speed}</p>
+          <span>Velocidade:</span>
+          <span>{vehicle.max_atmosphering_speed}</span>
         </div>
         <div className="d-flex justify-content-between">
-          <p>Equipe:</p>
-          <p>{vehicle.crew}</p>
+          <span>Equipe:</span>
+          <span>{vehicle.crew}</span>
         </div>
         {vehicle.passengers === 0 && (
           <div className="d-flex justify-content-between">
-            <p>Passageiros:</p>
-            <p>{vehicle.passengers}</p>
+            <span>Passageiros:</span>
+            <span>{vehicle.passengers}</span>
           </div>
         )}
         {vehicle.cargo_capacity !== 'none' &&
           vehicle.cargo_capacity !== 'unknown' && (
             <div className="d-flex justify-content-between">
-              <p>Capacidade de carga:</p>
-              <p>{vehicle.cargo_capacity}</p>
+              <span>Capacidade de carga:</span>
+              <span>{vehicle.cargo_capacity}</span>
             </div>
           )}
       </div>

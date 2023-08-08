@@ -1,7 +1,6 @@
 import { memo, useEffect } from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
 import loadingGif from 'assets/r2d2Loading.gif'
 
@@ -29,9 +28,7 @@ const Home: React.FC = () => {
       <BackGroundColorHome>
         <HeaderComponent />
         <Container>
-          <h1 className="text-white text-center pt-3 pb-5">Home</h1>
-          <Link to="/checkout">Checkout</Link>
-          <Row className="row-col-1 row-cols-md-3 row-cols-lg-4 g-4 pb-5">
+          <Row className="row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 justify-content-center g-3 my-3">
             {isLoading && (
               <div className="d-flex justify-content-center">
                 <img src={loadingGif} alt="Loading" />
