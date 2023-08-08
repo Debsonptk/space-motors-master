@@ -3,6 +3,8 @@ import { memo, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
+import { useVehicles } from 'context/VehiclesContext'
+
 import FooterComponent from 'components/Footer/FooterComponent'
 import HeaderComponent from 'components/Header/HeaderComponent'
 
@@ -12,6 +14,7 @@ import { BackGroundColorHome } from './styles'
 
 const Home: React.FC = () => {
   const setTitle = useTitle()
+  const { vehicles, isLoading, currentPage, fetchVehicles } = useVehicles()
 
   useEffect(() => {
     setTitle('Home')
