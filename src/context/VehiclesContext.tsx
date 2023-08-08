@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -65,6 +66,11 @@ export const VehiclesProvider: React.FC<IMyCustomProviderProps> = ({
     } finally {
       setIsLoading(false)
     }
+  }, [])
+
+  useEffect(() => {
+    fetchVehicles(1)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
