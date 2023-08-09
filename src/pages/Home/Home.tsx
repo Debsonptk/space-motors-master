@@ -12,12 +12,17 @@ import VehicleCard from 'components/VehicleCard'
 
 import useTitle from 'hooks/useTitle'
 
-import { BackGroundColorHome, SearchContainer } from './styles'
+import {
+  BackGroundColorHome,
+  SearchContainer,
+  StarWarsPaginate,
+} from './styles'
 
 const Home: React.FC = () => {
   const setTitle = useTitle()
   const [search, setSearch] = useState('')
-  const { vehicles, isLoading, currentPage, fetchVehicles } = useVehicles()
+  const { vehicles, isLoading, currentPage, fetchVehicles, totalPages } =
+    useVehicles()
 
   const handlePageChange = useCallback(
     (page: number) => fetchVehicles(page, search),
@@ -71,6 +76,16 @@ const Home: React.FC = () => {
                 </Col>
               ))}
           </Row>
+          {totalPages > 1 && (
+            <StarWarsPaginate
+              forcePage={currentPage - 1}
+              onPageChange={(p) => handlePageChange(p.selected + 1)}
+              pageCount={totalPages}
+              previousLabel="<"
+              nextLabel=">"
+              className="my-5 list-unstyled flex-wrap"
+            />
+          )}
         </Container>
       </BackGroundColorHome>
       <FooterComponent />

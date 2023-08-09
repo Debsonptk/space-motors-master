@@ -16,6 +16,7 @@ interface IContextProps {
   vehicle: VehicleType | null
   isLoading: boolean
   currentPage: number
+  totalPages: number
   fetchVehicles: (page: number, search?: string) => Promise<void>
   fetchVehicle: (id: number | string) => Promise<void>
 }
@@ -33,19 +34,20 @@ export const VehiclesProvider: React.FC<IMyCustomProviderProps> = ({
   const [vehicle, setVehicle] = useState<VehicleType | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
 
   const fetchVehicles = useCallback(async (page: number, search?: string) => {
+    const limit = 10
+
     setCurrentPage(page)
     setIsLoading(true)
 
-    const params = {
-      page,
-      search,
-    }
-
     try {
-      const response = await ApiSW.get('/vehicles', { params })
-      setVehicles(response.data.results)
+      const {
+        data: { results, count },
+      } = await ApiSW.get(`/vehicles`, { params: { search, page } })
+      setVehicles(results)
+      setTotalPages(Math.ceil(count / limit))
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)
@@ -81,6 +83,7 @@ export const VehiclesProvider: React.FC<IMyCustomProviderProps> = ({
           vehicle,
           isLoading,
           currentPage,
+          totalPages,
           fetchVehicles,
           fetchVehicle,
         }),
@@ -89,6 +92,7 @@ export const VehiclesProvider: React.FC<IMyCustomProviderProps> = ({
           vehicle,
           isLoading,
           currentPage,
+          totalPages,
           fetchVehicles,
           fetchVehicle,
         ],
