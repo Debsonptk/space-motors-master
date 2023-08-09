@@ -104,7 +104,7 @@ export const useVehicles = (): IContextProps => {
 
   if (!context) {
     // eslint-disable-next-line no-console
-    console.error('useVehiclesHook must be within MyCustomProvider')
+    console.error('useVehiclesHook must be with in MyCustomProvider')
   }
 
   return context
