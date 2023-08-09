@@ -18,7 +18,10 @@ const VehicleCard: React.FC<IVehicleCardProps> = ({ vehicle }) => {
     <CardContainer className="w-100 d-flex flex-column ">
       <span className="text-secondary">{vehicle.manufacturer}</span>
       {hasProduct ? (
-        <LinkTitle to="/checkout" className="text-decoration-none h2 mb-0">
+        <LinkTitle
+          to={`/checkout/${vehicle.name}`}
+          className="text-decoration-none h2 mb-0"
+        >
           {vehicle.name}
         </LinkTitle>
       ) : (
@@ -28,11 +31,11 @@ const VehicleCard: React.FC<IVehicleCardProps> = ({ vehicle }) => {
       <div className="text-light mt-3 row-cols-1 flex-grow-1">
         <div className="d-flex justify-content-between">
           <span>Largura:</span>
-          <span>{vehicle.length}</span>
+          <span>{vehicle.length} m</span>
         </div>
         <div className="d-flex justify-content-between">
           <span>Velocidade:</span>
-          <span>{vehicle.max_atmosphering_speed}</span>
+          <span>{vehicle.max_atmosphering_speed} km/h</span>
         </div>
         <div className="d-flex justify-content-between">
           <span>Equipe:</span>
@@ -48,13 +51,13 @@ const VehicleCard: React.FC<IVehicleCardProps> = ({ vehicle }) => {
           vehicle.cargo_capacity !== 'unknown' && (
             <div className="d-flex justify-content-between">
               <span>Capacidade de carga:</span>
-              <span>{vehicle.cargo_capacity}</span>
+              <span>{vehicle.cargo_capacity} kg</span>
             </div>
           )}
       </div>
       <h2 className="h3 mt-3">
         {vehicle.cost_in_credits === 'unknown'
-          ? 'Produto indisponível'
+          ? 'Indisponível no momento'
           : `$${vehicle.cost_in_credits}`}
       </h2>
     </CardContainer>

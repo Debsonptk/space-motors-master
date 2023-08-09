@@ -9,4 +9,5 @@ export type VehicleType = {
   passengers: number
   cargo_capacity: number | string
   url: string
+  id: string
 }

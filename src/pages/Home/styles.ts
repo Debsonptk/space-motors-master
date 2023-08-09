@@ -45,7 +45,7 @@ export const Paginate = styled(ReactPaginate)`
     margin: 1px;
 
     &:hover {
-      background-color: #f7f700;
+      background-color: #ebf700;
     }
   }
 
