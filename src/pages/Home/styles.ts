@@ -33,23 +33,26 @@ export const SearchContainer = styled.div`
     border-radius: 6px;
   }
 `
-export const StarWarsPaginate = styled(ReactPaginate)`
+export const Paginate = styled(ReactPaginate)`
   display: flex;
   justify-content: center;
-  font-weight: bold;
 
   & > li {
     border: 1px solid black;
     background-color: #f4e426;
     color: black;
     border-radius: 7px;
-    margin: 3px;
+    margin: 1px;
+
+    &:hover {
+      background-color: #f7f700;
+    }
   }
 
   a {
     color: black;
     float: left;
-    padding: 8px 16px;
+    padding: 10px 20px;
     text-decoration: none;
   }
   & > li.selected > a {

@@ -1,6 +1,8 @@
 import { memo, useCallback, useEffect, useState } from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
+import { BiSearchAlt } from 'react-icons/bi'
+import { SlClose } from 'react-icons/sl'
 
 import loadingGif from 'assets/r2d2Loading.gif'
 
@@ -12,11 +14,7 @@ import VehicleCard from 'components/VehicleCard'
 
 import useTitle from 'hooks/useTitle'
 
-import {
-  BackGroundColorHome,
-  SearchContainer,
-  StarWarsPaginate,
-} from './styles'
+import { BackGroundColorHome, Paginate, SearchContainer } from './styles'
 
 const Home: React.FC = () => {
   const setTitle = useTitle()
@@ -39,6 +37,11 @@ const Home: React.FC = () => {
     [fetchVehicles, search],
   )
 
+  const handleClear = useCallback(() => {
+    fetchVehicles(1)
+    setSearch('')
+  }, [fetchVehicles])
+
   return (
     <>
       <BackGroundColorHome>
@@ -55,9 +58,14 @@ const Home: React.FC = () => {
                 aria-label="Search Vehicle"
                 aria-describedby="basic-addon2"
               />
+              {search.length > 0 && (
+                <button type="submit" onClick={handleClear} id="button-addon2">
+                  <SlClose size="25px" />
+                </button>
+              )}
               <div className="d-flex mt-2 mt-sm-0">
                 <button type="submit" onClick={handleSearch} id="button-addon2">
-                  Search
+                  <BiSearchAlt size="25px" />
                 </button>
               </div>
             </div>
@@ -77,7 +85,7 @@ const Home: React.FC = () => {
               ))}
           </Row>
           {totalPages > 1 && (
-            <StarWarsPaginate
+            <Paginate
               forcePage={currentPage - 1}
               onPageChange={(p) => handlePageChange(p.selected + 1)}
               pageCount={totalPages}
