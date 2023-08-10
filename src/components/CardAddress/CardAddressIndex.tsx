@@ -66,7 +66,7 @@ const CardConfirmation: React.FC = () => {
           <BackGroundColorImput
             className="form-control border-0"
             id="cep"
-            type="number"
+            type="text"
             {...register('cep', {
               required: 'O campo CEP está vazio',
             })}
@@ -101,7 +101,7 @@ const CardConfirmation: React.FC = () => {
               <BackGroundColorImput
                 className="form-control border-0"
                 id="num"
-                type="number"
+                type="text"
                 {...register('number', {
                   required: 'O campo Número está vazio',
                 })}

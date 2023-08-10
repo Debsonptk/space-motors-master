@@ -102,7 +102,7 @@ const CardConfirmation: React.FC = () => {
       </Card>
       <Card className="bg-black p-3 mt-2 mb-4">
         <div className="d-grid gap-2 pt-3">
-          <ButtonYellowColor className="btn p-2" type="button">
+          <ButtonYellowColor className="btn p-2" type="submit">
             Finalizar Compra
           </ButtonYellowColor>
         </div>
