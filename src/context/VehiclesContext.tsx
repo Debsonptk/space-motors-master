@@ -18,7 +18,7 @@ interface IContextProps {
   currentPage: number
   totalPages: number
   fetchVehicles: (page: number, search?: string) => Promise<void>
-  fetchVehicle: (id: number | string) => Promise<void>
+  fetchVehicle: (charId: number | string) => Promise<void>
 }
 
 interface IMyCustomProviderProps {
@@ -56,11 +56,11 @@ export const VehiclesProvider: React.FC<IMyCustomProviderProps> = ({
     }
   }, [])
 
-  const fetchVehicle = useCallback(async (id: number | string) => {
+  const fetchVehicle = useCallback(async (charId: number | string) => {
     setIsLoading(true)
 
     try {
-      const response = await ApiSW.get(`/vehicles/${id}`)
+      const response = await ApiSW.get(`/vehicles/${charId}`)
       setVehicle(response.data)
     } catch (e) {
       // eslint-disable-next-line no-console

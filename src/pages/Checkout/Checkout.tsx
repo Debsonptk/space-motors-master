@@ -7,6 +7,10 @@ import { useForm } from 'react-hook-form'
 import { MdOutlineArrowBackIosNew } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
+import loading from 'assets/r2d2Loading.gif'
+
+import { useVehicles } from 'context/VehiclesContext'
+
 import FooterComponent from 'components/Footer/FooterComponent'
 import HeaderComponent from 'components/Header/HeaderComponent'
 
@@ -27,6 +31,7 @@ const Checkout: React.FC = () => {
   const setTitle = useTitle()
   const [lastCep, setLastCep] = useState('')
   const [isInvalidCep, setIsInvalidCep] = useState(false)
+  const { isLoading } = useVehicles()
 
   const {
     register,
@@ -83,317 +88,336 @@ const Checkout: React.FC = () => {
             </Link>
             <h1 className="text-white px-2">Checkout</h1>
           </div>
-          <Row className="row-cols-1 row-cols-lg-3 g-2">
-            <Col className="pb-4">
-              <Card className="bg-black p-3">
-                <TextYellowColor>Informações Pessoais</TextYellowColor>
-                <form onSubmit={handleSubmit(handleFormSubmit)}>
-                  <div>
-                    <label className="text-white pb-2 pt-2" htmlFor="name">
-                      Nome
-                    </label>
-                  </div>
-                  <BackGroundColorImput
-                    className="form-control border-0"
-                    id="name"
-                    type="text"
-                    {...register('name', {
-                      required: 'O campo nome está vazio',
-                      maxLength: {
-                        value: 35,
-                        message: 'Coloque apenas o primeiro e último nome',
-                      },
-                    })}
-                  />
-                  {errors.name && (
-                    <p className="text-danger">{errors.name.message}</p>
-                  )}
-                  <div>
+          {isLoading && (
+            <div className="pt-2 d-flex justify-content-center pb-3">
+              <img src={loading} alt="Loading..." />
+            </div>
+          )}
+          {!isLoading && (
+            <Row className="row-cols-1 row-cols-lg-3 g-2">
+              <Col className="pb-4">
+                <Card className="bg-black p-3">
+                  <TextYellowColor>Informações Pessoais</TextYellowColor>
+                  <form onSubmit={handleSubmit(handleFormSubmit)}>
                     <div>
-                      <label className="text-white pb-2 pt-2" htmlFor="email">
-                        E-mail
+                      <label className="text-white pb-2 pt-2" htmlFor="name">
+                        Nome
                       </label>
                     </div>
                     <BackGroundColorImput
                       className="form-control border-0"
-                      id="email"
+                      id="name"
                       type="text"
-                      {...register('email', {
-                        required: 'O campo E-mail está vazio',
+                      {...register('name', {
+                        required: 'O campo nome está vazio',
+                        maxLength: {
+                          value: 35,
+                          message: 'Coloque apenas o primeiro e último nome',
+                        },
                       })}
                     />
                     {errors.name && (
                       <p className="text-danger">{errors.name.message}</p>
                     )}
-                  </div>
-                  <div>
                     <div>
-                      <label className="text-white pb-2 pt-2" htmlFor="phone">
-                        Telefone
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="phone"
-                      type="number"
-                      {...register('phone', {
-                        required: 'O campo telefone está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <div>
-                      <label className="text-white pb-2 pt-2" htmlFor="cpf">
-                        CPF
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="cpf"
-                      type="number"
-                      {...register('cpf', {
-                        required: 'O campo CPF está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
-                  </div>
-                </form>
-              </Card>
-            </Col>
-            <Col className="pb-4">
-              <Card className="bg-black p-3">
-                <TextYellowColor>Endereço</TextYellowColor>
-                <form onSubmit={handleSubmit(handleFormSubmit)}>
-                  <div>
-                    <label className="text-white pb-2 pt-2" htmlFor="cep">
-                      CEP
-                    </label>
-                  </div>
-                  <BackGroundColorImput
-                    className="form-control border-0"
-                    id="cep"
-                    type="number"
-                    {...register('cep', {
-                      required: 'O campo CEP está vazio',
-                    })}
-                  />
-                  {isInvalidCep && (
-                    <span className="text-danger">CEP INVÁLIDO</span>
-                  )}
-                  {errors.name && (
-                    <p className="text-danger">{errors.name.message}</p>
-                  )}
-                  <div>
-                    <div>
-                      <label
-                        className="text-white pb-2 pt-2"
-                        htmlFor="logradouro"
-                      >
-                        Logradouro
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="logradouro"
-                      type="text"
-                      {...register('publicPlace', {
-                        required: 'O campo Logradouro está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <Row className="d-flex row-cols-1 row-cols-md-2 g-2">
-                    <Col>
                       <div>
-                        <label className="text-white pb-2 pt-2" htmlFor="num">
-                          Número
+                        <label className="text-white pb-2 pt-2" htmlFor="email">
+                          E-mail
                         </label>
                       </div>
                       <BackGroundColorImput
                         className="form-control border-0"
-                        id="num"
-                        type="number"
-                        {...register('number', {
-                          required: 'O campo Número está vazio',
+                        id="email"
+                        type="text"
+                        {...register('email', {
+                          required: 'O campo E-mail está vazio',
                         })}
                       />
                       {errors.name && (
                         <p className="text-danger">{errors.name.message}</p>
                       )}
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <div>
-                        <label
-                          className="text-white pb-2 pt-2"
-                          htmlFor="complemento"
-                        >
-                          Complemento*
+                        <label className="text-white pb-2 pt-2" htmlFor="phone">
+                          Telefone
                         </label>
                       </div>
                       <BackGroundColorImput
                         className="form-control border-0"
-                        id="complemento"
-                        type="text"
-                        {...register('complement')}
-                      />
-                    </Col>
-                  </Row>
-                  <div>
-                    <div>
-                      <label className="text-white pb-2 pt-2" htmlFor="bairro">
-                        Bairro
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="bairro"
-                      type="text"
-                      {...register('neighborhood', {
-                        required: 'O campo Bairro está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <div>
-                      <label className="text-white pb-2 pt-2" htmlFor="cidade">
-                        Cidade
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="cidade"
-                      type="text"
-                      {...register('city', {
-                        required: 'O campo Cidade está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <div>
-                      <label className="text-white pb-2 pt-2" htmlFor="estado">
-                        Estado
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="estado"
-                      type="text"
-                      {...register('state', {
-                        required: 'O campo Estado está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
-                  </div>
-                </form>
-              </Card>
-            </Col>
-            <Col>
-              <Card className="bg-black p-3">
-                <TextYellowColor>Forma de pagamento</TextYellowColor>
-                <form onSubmit={handleSubmit(handleFormSubmit)}>
-                  <div>
-                    <label
-                      className="text-white pb-2 pt-2 pt-2"
-                      htmlFor="nameCreditCard"
-                    >
-                      Nome do titular do cartão
-                    </label>
-                  </div>
-                  <BackGroundColorImput
-                    className="form-control border-0"
-                    id="nameCreditCard"
-                    type="text"
-                    {...register('nameCreditCard', {
-                      required: 'O campo nome do titular do cartão está vazio',
-                    })}
-                  />
-                  {errors.name && (
-                    <p className="text-danger">{errors.name.message}</p>
-                  )}
-                  <div>
-                    <div>
-                      <label
-                        className="text-white pb-2 pt-2"
-                        htmlFor="numberCard"
-                      >
-                        Número do cartão
-                      </label>
-                    </div>
-                    <BackGroundColorImput
-                      className="form-control border-0"
-                      id="email"
-                      type="numberCard"
-                      {...register('numberCreditCard', {
-                        required: 'O campo Número do cartão está vazio',
-                      })}
-                    />
-                    {errors.name && (
-                      <p className="text-danger">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <Row className="d-flex row-cols-1 row-cols-md-2 g-2">
-                    <Col>
-                      <div>
-                        <label
-                          className="text-white pb-2 pt-2"
-                          htmlFor="validity"
-                        >
-                          Validade
-                        </label>
-                      </div>
-                      <BackGroundColorImput
-                        className="form-control border-0"
-                        id="validity"
+                        id="phone"
                         type="number"
-                        {...register('validity', {
-                          required: 'O campo Validade está vazio',
+                        {...register('phone', {
+                          required: 'O campo telefone está vazio',
                         })}
                       />
                       {errors.name && (
                         <p className="text-danger">{errors.name.message}</p>
                       )}
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <div>
-                        <label
-                          className="text-white pb-2 pt-2"
-                          htmlFor="securityCode"
-                        >
-                          Código de Segurança
+                        <label className="text-white pb-2 pt-2" htmlFor="cpf">
+                          CPF
                         </label>
                       </div>
                       <BackGroundColorImput
                         className="form-control border-0"
-                        id="securityCode"
-                        type="text"
-                        {...register('complement')}
+                        id="cpf"
+                        type="number"
+                        {...register('cpf', {
+                          required: 'O campo CPF está vazio',
+                        })}
                       />
-                    </Col>
-                  </Row>
-                </form>
-              </Card>
-              <div className="d-grid gap-2 pt-3">
-                <ButtonYellowColor className="btn p-2" type="submit">
-                  Finalizar Compra
-                </ButtonYellowColor>
-              </div>
-            </Col>
-          </Row>
+                      {errors.name && (
+                        <p className="text-danger">{errors.name.message}</p>
+                      )}
+                    </div>
+                  </form>
+                </Card>
+              </Col>
+              <Col className="pb-4">
+                <Card className="bg-black p-3">
+                  <TextYellowColor>Endereço</TextYellowColor>
+                  <form onSubmit={handleSubmit(handleFormSubmit)}>
+                    <div>
+                      <label className="text-white pb-2 pt-2" htmlFor="cep">
+                        CEP
+                      </label>
+                    </div>
+                    <BackGroundColorImput
+                      className="form-control border-0"
+                      id="cep"
+                      type="number"
+                      {...register('cep', {
+                        required: 'O campo CEP está vazio',
+                      })}
+                    />
+                    {isInvalidCep && (
+                      <span className="text-danger">CEP INVÁLIDO</span>
+                    )}
+                    {errors.name && (
+                      <p className="text-danger">{errors.name.message}</p>
+                    )}
+                    <div>
+                      <div>
+                        <label
+                          className="text-white pb-2 pt-2"
+                          htmlFor="logradouro"
+                        >
+                          Logradouro
+                        </label>
+                      </div>
+                      <BackGroundColorImput
+                        className="form-control border-0"
+                        id="logradouro"
+                        type="text"
+                        {...register('publicPlace', {
+                          required: 'O campo Logradouro está vazio',
+                        })}
+                      />
+                      {errors.name && (
+                        <p className="text-danger">{errors.name.message}</p>
+                      )}
+                    </div>
+                    <Row className="d-flex row-cols-1 row-cols-md-2 g-2">
+                      <Col>
+                        <div>
+                          <label className="text-white pb-2 pt-2" htmlFor="num">
+                            Número
+                          </label>
+                        </div>
+                        <BackGroundColorImput
+                          className="form-control border-0"
+                          id="num"
+                          type="number"
+                          {...register('number', {
+                            required: 'O campo Número está vazio',
+                          })}
+                        />
+                        {errors.name && (
+                          <p className="text-danger">{errors.name.message}</p>
+                        )}
+                      </Col>
+                      <Col>
+                        <div>
+                          <label
+                            className="text-white pb-2 pt-2"
+                            htmlFor="complemento"
+                          >
+                            Complemento*
+                          </label>
+                        </div>
+                        <BackGroundColorImput
+                          className="form-control border-0"
+                          id="complemento"
+                          type="text"
+                          {...register('complement')}
+                        />
+                      </Col>
+                    </Row>
+                    <div>
+                      <div>
+                        <label
+                          className="text-white pb-2 pt-2"
+                          htmlFor="bairro"
+                        >
+                          Bairro
+                        </label>
+                      </div>
+                      <BackGroundColorImput
+                        className="form-control border-0"
+                        id="bairro"
+                        type="text"
+                        {...register('neighborhood', {
+                          required: 'O campo Bairro está vazio',
+                        })}
+                      />
+                      {errors.name && (
+                        <p className="text-danger">{errors.name.message}</p>
+                      )}
+                    </div>
+                    <div>
+                      <div>
+                        <label
+                          className="text-white pb-2 pt-2"
+                          htmlFor="cidade"
+                        >
+                          Cidade
+                        </label>
+                      </div>
+                      <BackGroundColorImput
+                        className="form-control border-0"
+                        id="cidade"
+                        type="text"
+                        {...register('city', {
+                          required: 'O campo Cidade está vazio',
+                        })}
+                      />
+                      {errors.name && (
+                        <p className="text-danger">{errors.name.message}</p>
+                      )}
+                    </div>
+                    <div>
+                      <div>
+                        <label
+                          className="text-white pb-2 pt-2"
+                          htmlFor="estado"
+                        >
+                          Estado
+                        </label>
+                      </div>
+                      <BackGroundColorImput
+                        className="form-control border-0"
+                        id="estado"
+                        type="text"
+                        {...register('state', {
+                          required: 'O campo Estado está vazio',
+                        })}
+                      />
+                      {errors.name && (
+                        <p className="text-danger">{errors.name.message}</p>
+                      )}
+                    </div>
+                  </form>
+                </Card>
+              </Col>
+              <Col>
+                <Card className="bg-black p-3">
+                  <TextYellowColor>Forma de pagamento</TextYellowColor>
+                  <form onSubmit={handleSubmit(handleFormSubmit)}>
+                    <div>
+                      <label
+                        className="text-white pb-2 pt-2 pt-2"
+                        htmlFor="nameCreditCard"
+                      >
+                        Nome do titular do cartão
+                      </label>
+                    </div>
+                    <BackGroundColorImput
+                      className="form-control border-0"
+                      id="nameCreditCard"
+                      type="text"
+                      {...register('nameCreditCard', {
+                        required:
+                          'O campo nome do titular do cartão está vazio',
+                      })}
+                    />
+                    {errors.name && (
+                      <p className="text-danger">{errors.name.message}</p>
+                    )}
+                    <div>
+                      <div>
+                        <label
+                          className="text-white pb-2 pt-2"
+                          htmlFor="numberCard"
+                        >
+                          Número do cartão
+                        </label>
+                      </div>
+                      <BackGroundColorImput
+                        className="form-control border-0"
+                        id="email"
+                        type="numberCard"
+                        {...register('numberCreditCard', {
+                          required: 'O campo Número do cartão está vazio',
+                        })}
+                      />
+                      {errors.name && (
+                        <p className="text-danger">{errors.name.message}</p>
+                      )}
+                    </div>
+                    <Row className="d-flex row-cols-1 row-cols-md-2 g-2">
+                      <Col>
+                        <div>
+                          <label
+                            className="text-white pb-2 pt-2"
+                            htmlFor="validity"
+                          >
+                            Validade
+                          </label>
+                        </div>
+                        <BackGroundColorImput
+                          className="form-control border-0"
+                          id="validity"
+                          type="number"
+                          {...register('validity', {
+                            required: 'O campo Validade está vazio',
+                          })}
+                        />
+                        {errors.name && (
+                          <p className="text-danger">{errors.name.message}</p>
+                        )}
+                      </Col>
+                      <Col>
+                        <div>
+                          <label
+                            className="text-white pb-2 pt-2"
+                            htmlFor="securityCode"
+                          >
+                            CVC
+                          </label>
+                        </div>
+                        <BackGroundColorImput
+                          className="form-control border-0"
+                          id="securityCode"
+                          type="text"
+                          {...register('complement')}
+                        />
+                      </Col>
+                    </Row>
+                  </form>
+                </Card>
+                <Card className="bg-black p-3 mt-2 mb-4">
+                  <div className="d-grid gap-2 pt-3">
+                    <ButtonYellowColor className="btn p-2" type="submit">
+                      Finalizar Compra
+                    </ButtonYellowColor>
+                  </div>
+                </Card>
+              </Col>
+            </Row>
+          )}
         </Container>
       </BackGroundColorCheckout>
       <FooterComponent />
