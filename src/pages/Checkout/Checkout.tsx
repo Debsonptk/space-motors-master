@@ -11,6 +11,7 @@ import loading from 'assets/r2d2Loading.gif'
 
 import { useVehicles } from 'context/VehiclesContext'
 
+import CardConfirmation from 'components/CardConfirmation'
 import FooterComponent from 'components/Footer/FooterComponent'
 import HeaderComponent from 'components/Header/HeaderComponent'
 
@@ -23,7 +24,6 @@ import { FormType } from 'types/FormType'
 import {
   BackGroundColorCheckout,
   BackGroundColorImput,
-  ButtonYellowColor,
   TextYellowColor,
 } from './styles'
 
@@ -361,6 +361,7 @@ const Checkout: React.FC = () => {
                         type="numberCard"
                         {...register('numberCreditCard', {
                           required: 'O campo Número do cartão está vazio',
+                          maxLength: 3,
                         })}
                       />
                       {errors.name && (
@@ -408,13 +409,7 @@ const Checkout: React.FC = () => {
                     </Row>
                   </form>
                 </Card>
-                <Card className="bg-black p-3 mt-2 mb-4">
-                  <div className="d-grid gap-2 pt-3">
-                    <ButtonYellowColor className="btn p-2" type="submit">
-                      Finalizar Compra
-                    </ButtonYellowColor>
-                  </div>
-                </Card>
+                <CardConfirmation />
               </Col>
             </Row>
           )}
