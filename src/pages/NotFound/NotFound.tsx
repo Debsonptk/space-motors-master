@@ -13,7 +13,7 @@ const NotFound: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [i18n.resolvedLanguage])
 
-  return <h1>{t('not-found.title')}</h1>
+  return <h1>{t('Página não encontrada')}</h1>
 }
 
 export default memo(NotFound)
