@@ -21,6 +21,6 @@ export const ButtonYellowColor = styled.button`
 
   &:hover {
     color: #f6e41f;
-    background-color: #000;
+    background-color: #333333;
   }
 `
