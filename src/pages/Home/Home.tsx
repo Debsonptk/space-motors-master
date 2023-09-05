@@ -48,7 +48,7 @@ const Home: React.FC = () => {
         <HeaderComponent />
         <Container>
           <SearchContainer>
-            <div className="d-flex flex-column flex-sm-row align-items-center">
+            <div className="d-flex  flex-sm-row align-items-center">
               <input
                 className="w-100 py-2"
                 type="text"

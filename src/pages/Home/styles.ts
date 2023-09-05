@@ -16,7 +16,7 @@ export const SearchContainer = styled.div`
   background-color: #000;
   padding: 30px 20px 30px 20px;
   border-radius: 10px;
-  margin-top: -24px;
+  margin-top: -25px;
 
   button {
     background-color: #f6e41f;
