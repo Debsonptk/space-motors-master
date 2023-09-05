@@ -19,7 +19,7 @@ const VehicleCard: React.FC<IVehicleCardProps> = ({ vehicle }) => {
       <span className="text-secondary">{vehicle.manufacturer}</span>
       {hasProduct ? (
         <LinkTitle
-          to={`/checkout/${vehicle.name}`}
+          to={`/checkout/${vehicle.id}`}
           className="text-decoration-none h2 mb-0"
         >
           {vehicle.name}

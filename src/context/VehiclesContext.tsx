@@ -7,6 +7,8 @@ import {
   useState,
 } from 'react'
 
+import { normalizeVehicleData } from 'helpers'
+
 import ApiSW from 'services/apiWS'
 
 import { VehicleType } from 'types/VehiclesType'
@@ -46,7 +48,7 @@ export const VehiclesProvider: React.FC<IMyCustomProviderProps> = ({
       const {
         data: { results, count },
       } = await ApiSW.get(`/vehicles`, { params: { search, page } })
-      setVehicles(results)
+      setVehicles(normalizeVehicleData(results))
       setTotalPages(Math.ceil(count / limit))
     } catch (e) {
       // eslint-disable-next-line no-console

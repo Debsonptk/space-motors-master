@@ -3,6 +3,7 @@ import { memo, useCallback } from 'react'
 
 import { Card, Col, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 
 import { FormType } from 'types/FormType'
 
@@ -18,6 +19,8 @@ const CardConfirmation: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormType>()
+
+  const { id } = useParams()
 
   const handleFormSubmit = useCallback((data: FormType) => {
     // eslint-disable-next-line no-console
